@@ -83,7 +83,7 @@ function playSound(id: string) {
   const sound = new Pizzicato.Sound(
     {
       source: "file",
-      options: { path: require(`@/assets/${id}.ogg`), attack: 0 },
+      options: { path: require(`@/static/${id}.ogg`), attack: 0 },
     },
     () => {
       const delay = new Pizzicato.Effects.Delay({
