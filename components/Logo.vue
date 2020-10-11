@@ -87,7 +87,7 @@ function playSound(id: string) {
     },
     () => {
       const delay = new Pizzicato.Effects.Delay({
-        feedback: 0.4,
+        feedback: 0.25,
         time: 0.45,
         mix: 0.15,
       });
