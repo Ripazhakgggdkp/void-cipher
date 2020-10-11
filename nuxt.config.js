@@ -56,12 +56,12 @@ export default {
       id: 'UA-180295859-1'
     }],
   ],
-  googleAnalytics: {
-    debug: {
-      enabled: true,
-      sendHitTask: true
-    }
-  },
+  // googleAnalytics: {
+  //   debug: {
+  //     enabled: true,
+  //     sendHitTask: true
+  //   }
+  // },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
