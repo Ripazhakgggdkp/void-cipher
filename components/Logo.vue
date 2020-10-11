@@ -1,76 +1,34 @@
 <template>
   <div class="grid grid-cols-3 gap-4">
     <input
-      v-on:change="onBlockClick(0)"
+      v-for="(n, i) in 4"
+      :key="i"
+      v-on:change="onBlockClick(i)"
       v-model="activeCipher"
-      value="0"
-      id="0"
+      :value="i"
+      :id="i"
       type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
-    />
-    <input
-      v-on:change="onBlockClick(1)"
-      v-model="activeCipher"
-      value="1"
-      id="1"
-      type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
-    />
-    <input
-      v-on:change="onBlockClick(2)"
-      v-model="activeCipher"
-      value="2"
-      id="2"
-      type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
-    />
-    <input
-      v-on:change="onBlockClick(3)"
-      v-model="activeCipher"
-      value="3"
-      id="3"
-      type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
+      class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
+      :class="isChecked(i) ? 'ripple-white' : 'ripple-white-checked'"
     />
     <input
       v-on:change="onLetterChanged()"
-      class="text-center uppercase h-16 w-16 bg-cipher-block appearance-none border-gray-200 text-gray-700 leading-tight focus:outline-none"
+      class="text-center shadow-xl z-10 uppercase text-white text-4xl h-16 w-16 bg-cipher-gray appearance-none leading-tight focus:outline-none"
       id="inline-full-name"
       type="text"
       maxlength="1"
       v-model="letter"
     />
     <input
-      v-on:change="onBlockClick(4)"
+      v-for="(n, i) in 4"
+      :key="i + 4"
+      v-on:change="onBlockClick(i + 4)"
       v-model="activeCipher"
-      value="4"
-      id="4"
+      :value="i + 4"
+      :id="i + 4"
       type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
-    />
-    <input
-      v-on:change="onBlockClick(5)"
-      v-model="activeCipher"
-      value="5"
-      id="5"
-      type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
-    />
-    <input
-      v-on:change="onBlockClick(6)"
-      v-model="activeCipher"
-      value="6"
-      id="6"
-      type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
-    />
-    <input
-      v-on:change="onBlockClick(7)"
-      v-model="activeCipher"
-      value="7"
-      id="7"
-      type="checkbox"
-      class="appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
+      class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
+      :class="isChecked(i + 4) ? 'ripple-white' : 'ripple-white-checked'"
     />
   </div>
 </template>
@@ -100,23 +58,24 @@ export default Vue.extend({
   mounted() {
     if (localStorage.cipher) {
       this.cipher = new Map(JSON.parse(localStorage.cipher));
+      this.letter = this.cipher.get("") ?? "";
     }
   },
   data() {
     return {
-      activeCipher: [],
+      activeCipher: [""],
       letter: "",
       cipher: new Map<string, string>(),
     };
   },
   methods: {
     onBlockClick: function (id: string) {
-      const key = this.activeCipher.sort((a, b) => a - b).join("");
+      const key = this.activeCipher.sort((a, b) => +a - +b).join("");
       this.letter = this.cipher.get(key) ?? "";
       playSound(id);
     },
     onLetterChanged: function () {
-      const key = this.activeCipher.sort((a, b) => a - b).join("");
+      const key = this.activeCipher.sort((a, b) => +a - +b).join("");
       this.cipher.set(key, this.letter);
       localStorage.cipher = JSON.stringify([...this.cipher]);
       playSound("8");
@@ -124,8 +83,64 @@ export default Vue.extend({
     debugMe: function () {
       console.log(this.cipher);
     },
+    isChecked: function (id: string) {
+      if (this.activeCipher.some((x) => x === id)) {
+        return true;
+      }
+    },
   },
 });
 </script>
+
+<style scoped>
+.ripple-white::before {
+  content: "";
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #818081;
+  transform-origin: center;
+  width: 63px;
+  height: 63px;
+  z-index: 1;
+  animation-name: from-white;
+  animation-duration: 2s;
+  pointer-events: none;
+  opacity: 1;
+}
+.ripple-white-checked::before {
+  animation-name: from-black;
+  z-index: 1;
+  animation-duration: 2s;
+  border: 2px solid white;
+}
+@keyframes from-white {
+  0% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(20);
+    opacity: 0;
+  }
+}
+
+@keyframes from-black {
+  0% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(20);
+    opacity: 0;
+  }
+}
+</style>
 
 

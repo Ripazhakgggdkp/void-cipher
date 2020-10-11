@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cipher-gray">
+  <div class="bg-cipher-gray overflow-hidden">
     <Nuxt />
   </div>
 </template>
