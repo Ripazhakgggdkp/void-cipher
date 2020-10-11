@@ -93,16 +93,10 @@ export default Vue.extend({
   methods: {
     onBlockClick: function () {
       const key = this.activeCipher.sort((a, b) => a - b).join("");
-      if (!key) {
-        return;
-      }
       this.letter = this.cipher.get(key) ?? "";
     },
     onLetterChanged: function () {
       const key = this.activeCipher.sort((a, b) => a - b).join("");
-      if (!key) {
-        return;
-      }
       this.cipher.set(key, this.letter);
       localStorage.cipher = JSON.stringify([...this.cipher]);
     },
