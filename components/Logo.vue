@@ -8,7 +8,7 @@
       :value="i"
       :id="i"
       type="checkbox"
-      class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
+      class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark focus:outline-none border-transparent h-16 w-16 bg-cipher-block"
       :class="isChecked(i) ? 'ripple-white' : 'ripple-white-checked'"
     />
     <input
@@ -27,7 +27,7 @@
       :value="i + 4"
       :id="i + 4"
       type="checkbox"
-      class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark checked:border-transparent h-16 w-16 bg-cipher-block"
+      class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark focus:outline-none border-transparent h-16 w-16 bg-cipher-block"
       :class="isChecked(i + 4) ? 'ripple-white' : 'ripple-white-checked'"
     />
   </div>
