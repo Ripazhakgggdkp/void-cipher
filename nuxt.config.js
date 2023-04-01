@@ -4,6 +4,9 @@ export default {
   router: {
     base: "/void-cipher/"
   },
+  server: {
+    host: '0'
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {

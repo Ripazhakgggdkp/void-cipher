@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-3 gap-4" v-on:keyup="onPress">
+  <div class="grid grid-cols-3 gap-4" v-on:keydown="onPress">
     <input v-for="(n, i) in 4" :key="i" v-on:change="onBlockClick(i)" v-model="activeCipher" :value="i" :id="i"
       type="checkbox"
       class="shadow-xl z-10 ripple-white relative appearance-none checked:bg-cipher-dark focus:outline-none border-transparent h-16 w-16 bg-cipher-block"
