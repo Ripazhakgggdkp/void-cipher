@@ -21,9 +21,12 @@ import { compareSequences, keys_pressed, predefinedSequence } from "~/cheat/list
 
 const cheat = new Map([
   ["06", "a"],
+  ["07", "b"],
   ["067", "c"],
   ["05", "d"],
   ["056", "e"],
+  ["057", "f"],
+  ["0567", "g"],
   ["04", "h"],
   ["046", "i"],
   ["047", "j"],
@@ -33,11 +36,16 @@ const cheat = new Map([
   ["0457", "n"],
   ["04567", "o"],
   ["03", "p"],
+  ["036", "q"],
   ["037", "r"],
   ["0367", "s"],
   ["035", "t"],
   ["0356", "u"],
+  ["0357", "v"],
+  ["03567", "w"],
+  ["034", "x"],
   ["0346", "y"],
+  ["0347", "z"],
 ])
 
 function playSound(id: string) {
