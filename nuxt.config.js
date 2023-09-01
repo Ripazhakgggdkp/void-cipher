@@ -56,9 +56,6 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-180295859-1'
-    }],
   ],
   // googleAnalytics: {
   //   debug: {
